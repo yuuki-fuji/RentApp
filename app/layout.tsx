@@ -2,6 +2,7 @@ import { Nunito } from 'next/font/google';
 
 import './globals.css'
 import Navbar from '@/app/components/navbar/Navbar';
+import ClientOnly from './components/ClientOnly';
 
 export const metadata = {
   title: 'Rent App',
@@ -17,12 +18,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  return (
-    <html lang="ja">
-      <body className={font.className}>
-        <Navbar />
-        {children}
-      </body>
-    </html>
+    return (
+        <html lang="ja">
+            <body className={font.className}>
+                <ClientOnly>
+                    <Navbar />
+                </ClientOnly>
+                {children}
+            < /body>
+        </html>
   )
 }
