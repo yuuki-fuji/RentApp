@@ -13,6 +13,7 @@ import {
 import useRegisterModel from '@/app/hooks/useRegisterModel';
 import Modal from './Modal';
 import Heading from '../Heading';
+import Input from '../Inputs/Input';
 
 const RegisterModal = () => {
     const RegisterModal = useRegisterModel();
@@ -52,6 +53,14 @@ const RegisterModal = () => {
             <Heading 
                 title="Sign up to RentApp"
                 subtitle="Already have an account?"
+            />
+            <Input 
+                id="email"
+                label="Email"
+                disabled={isLoading}
+                register={register}
+                errors={errors}
+                required
             />
         </div>
     )
