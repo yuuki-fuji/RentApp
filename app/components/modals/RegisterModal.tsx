@@ -12,6 +12,7 @@ import {
 
 import useRegisterModel from '@/app/hooks/useRegisterModel';
 import Modal from './Modal';
+import Heading from '../Heading';
 
 const RegisterModal = () => {
     const RegisterModal = useRegisterModel();
@@ -46,6 +47,15 @@ const RegisterModal = () => {
             });
     }
 
+    const bodyContent = (
+        <div className="flex flex-col gap-4">
+            <Heading 
+                title="Sign up to RentApp"
+                subtitle="Already have an account?"
+            />
+        </div>
+    )
+
     return (
         <Modal 
             disabled={isLoading}
@@ -54,6 +64,7 @@ const RegisterModal = () => {
             actionLabel='Continue'
             onClose={RegisterModal.onClose}
             onSubmit={handleSubmit(onSubmit)}
+            body={bodyContent}
         />
     );
 }
