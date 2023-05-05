@@ -4,8 +4,8 @@ import './globals.css'
 import Navbar from '@/app/components/navbar/Navbar';
 import ClientOnly from './components/ClientOnly';
 import RegisterModal from './components/modals/RegisterModal';
+import LoginModal from './components/modals/LoginModal';
 import ToasterProvider from './providers/ToasterProvider';
-import { Toaster } from 'react-hot-toast';
 
 export const metadata = {
   title: 'Rent App',
@@ -26,6 +26,7 @@ export default function RootLayout({
             <body className={font.className}>
                 <ClientOnly>
                     <ToasterProvider />
+                    <LoginModal />
                     <RegisterModal />
                     <Navbar />
                 </ClientOnly>
