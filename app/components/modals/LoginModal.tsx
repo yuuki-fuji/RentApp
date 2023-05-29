@@ -1,6 +1,6 @@
 'use client';
 
-import axios from 'axios';
+import { signIn } from 'next-auth/react';
 import { AiFillGithub } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
 import { useCallback, useState } from 'react';
@@ -10,17 +10,20 @@ import {
     useForm
 } from 'react-hook-form';
 
-import useRegisterModel from '@/app/hooks/useRegisterModel';
-import useLoginModel from '@/app/hooks/useLoginModel';
+import useRegisterModal from '@/app/hooks/useRegisterModal';
+import useLoginModal from '@/app/hooks/useLoginModal';
+
 import Modal from './Modal';
 import Heading from '../Heading';
 import Input from '../Inputs/Input';
 import { toast } from 'react-hot-toast';
 import Button from '../Button';
+import { useRouter } from 'next/navigation';
 
 const LoginModal = () => {
-    const RegisterModal = useRegisterModel();
-    const LoginModal = useLoginModel();
+    const router = useRouter();
+    const loginModal = useLoginModal();
+    const registerModal = useRegisterModal();
     const [isLoading, setIsLoading] = useState(false);
 
     const {
@@ -39,16 +42,23 @@ const LoginModal = () => {
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         setIsLoading(true);
 
-        axios.post('/api/register', data)
-            .then(() => {
-                RegisterModal.onClose();
-            })
-            .catch((error) => {
-                toast.error('Something went wrong. Please try again.');
-            })
-            .finally(() => {
-                setIsLoading(false);
-            });
+        signIn('credentials', {
+            ...data,
+            redirect: false,
+        })
+        .then((callback) => {
+            setIsLoading(false);
+
+            if (callback?.ok) {
+                toast.success('Logged in');
+                router.refresh();
+                loginModal.onClose();
+            }
+
+            if (callback?.error) {
+                toast.error(callback.error);
+            }
+        })
     }
 
     const bodyContent = (
@@ -105,7 +115,7 @@ const LoginModal = () => {
                         Already have an account?
                     </div>
                     <div
-                        onClick={RegisterModal.onClose}
+                        onClick={registerModal.onClose}
                         className="
                             text-neutral-800
                             cursor-pointer
@@ -122,10 +132,10 @@ const LoginModal = () => {
     return (
         <Modal 
             disabled={isLoading}
-            isOpen={LoginModal.isOpen}
+            isOpen={loginModal.isOpen}
             title='Login'
             actionLabel='Continue'
-            onClose={LoginModal.onClose}
+            onClose={loginModal.onClose}
             onSubmit={handleSubmit(onSubmit)}
             body={bodyContent}
             footer={footerContent}

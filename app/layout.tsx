@@ -31,7 +31,7 @@ export default function RootLayout({
                     <Navbar />
                 </ClientOnly>
                 {children}
-            < /body>
+            </body>
         </html>
   )
 }

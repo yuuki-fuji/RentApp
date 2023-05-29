@@ -10,7 +10,7 @@ import {
     useForm
 } from 'react-hook-form';
 
-import useRegisterModel from '@/app/hooks/useRegisterModel';
+import useRegisterModal from '@/app/hooks/useRegisterModal';
 import Modal from './Modal';
 import Heading from '../Heading';
 import Input from '../Inputs/Input';
@@ -18,7 +18,7 @@ import { toast } from 'react-hot-toast';
 import Button from '../Button';
 
 const RegisterModal = () => {
-    const RegisterModal = useRegisterModel();
+    const RegisterModal = useRegisterModal();
     const [isLoading, setIsLoading] = useState(false);
 
     const {

@@ -5,13 +5,13 @@ import Avatar from '../Avatar';
 import { useCallback, useState } from 'react';
 import MenuItem from './MenuItem';
 
-import useRegisterModel from '@/app/hooks/useRegisterModel';
-import useLoginModel from '@/app/hooks/useLoginModel';
+import useRegisterModal from '@/app/hooks/useRegisterModal';
+import useLoginModal from '@/app/hooks/useLoginModal';
 
 
 const UserMenu = () => {
-    const RegisterModal = useRegisterModel();
-    const LoginModal = useLoginModel();
+    const registerModal = useRegisterModal();
+    const loginModal = useLoginModal();
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleOpen = useCallback(() => {
@@ -36,7 +36,7 @@ const UserMenu = () => {
                         cursor-pointer
                     "
                 >
-                    Airbub your home
+                    RentApp your home
                 </div>
                 <div
                     onClick={toggleOpen}
@@ -80,11 +80,11 @@ const UserMenu = () => {
                     <div className="flex flex-col cursor-pointer">
                         <>
                             <MenuItem
-                                onClick={LoginModal.onOpen}
+                                onClick={loginModal.onOpen}
                                 label="Login"
                             />
                             <MenuItem
-                                onClick={RegisterModal.onOpen}
+                                onClick={registerModal.onOpen}
                                 label="Sign up"
                             />
                         </>
