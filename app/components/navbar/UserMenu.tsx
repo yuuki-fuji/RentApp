@@ -114,7 +114,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                                     label="My properties"
                                 />
                                 <MenuItem
-                                    onClick={() => {}}
+                                    onClick={rentModal.onOpen}
                                     label="Rent App my home"
                                 />
                                 <hr />
