@@ -9,6 +9,7 @@ import Modal from "./Modal";
 import Heading from "../Heading";
 import { categories } from "../navbar/Categories";
 import CategoryInput from "../Inputs/CategoryInput";
+import CountrySelect from "../Inputs/CountrySelect";
 
 enum STEPS {
   CATEGORY = 0,
@@ -114,8 +115,14 @@ const RentModal = () => {
 
   if (step === STEPS.LOCATION) {
     bodyContent = (
-      <div>
-        Location Step!
+      <div className="flex flex-col gap-8">
+        <Heading 
+          title="Where is your place location?"
+          subtitle="Help guests find you!"
+        />
+        <CountrySelect 
+          
+        />
       </div>
     )
   }
