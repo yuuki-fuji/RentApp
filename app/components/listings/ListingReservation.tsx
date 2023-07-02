@@ -45,7 +45,8 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
         <hr />
         <Calendar 
           value={dateRange}
-          disabledDates={(value) => onChangeDate(value.selection)}
+          disabledDates={disabledDates}
+          onChange={(value) => onChangeDate(value.selection)}
         />
       </div>
   );
