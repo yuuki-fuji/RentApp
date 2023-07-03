@@ -115,6 +115,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
               <div className="font-light">night</div>
             )}
           </div>
+        </div>
           {onAction && actionLabel && (
             <Button 
               disabled={disabled}
@@ -123,7 +124,6 @@ const ListingCard: React.FC<ListingCardProps> = ({
               onClick={handleCancel}
             />
           )}
-        </div>
       </div>
     </div>
   );
