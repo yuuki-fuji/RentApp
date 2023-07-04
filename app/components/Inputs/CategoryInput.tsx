@@ -2,20 +2,20 @@
 
 import { IconType } from "react-icons";
 
-interface CategoryInputProps {
-  icon: IconType;
+interface CategoryBoxProps {
+  icon: IconType,
   label: string;
   selected?: boolean;
   onClick: (value: string) => void;
 }
 
-const CategoryInput: React.FC<CategoryInputProps> = ({
+const CategoryBox: React.FC<CategoryBoxProps> = ({
   icon: Icon,
   label,
   selected,
   onClick
 }) => {
-  return (
+  return ( 
     <div
       onClick={() => onClick(label)}
       className={`
@@ -24,6 +24,7 @@ const CategoryInput: React.FC<CategoryInputProps> = ({
         p-4
         flex
         flex-col
+        gap-3
         hover:border-black
         transition
         cursor-pointer
@@ -35,7 +36,7 @@ const CategoryInput: React.FC<CategoryInputProps> = ({
         {label}
       </div>
     </div>
-  );
+   );
 }
-
-export default CategoryInput;
+ 
+export default CategoryBox;
